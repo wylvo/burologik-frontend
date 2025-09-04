@@ -121,12 +121,12 @@ function NewsletterSubscribeForm({
       <Card className="border border-white/25 bg-white/5 backdrop-blur-sm">
         <CardHeader className="text-center">
           <CardTitle className="text-xl text-white">
-            Restez à l'affut!
+            Restez à l'affût!
           </CardTitle>
           <CardDescription className="text-brand-50">
-            Recevez des nouvelles sur le lancement du site, les dernières offres
-            exclusives, des informations sur les soldes, les réductions et bien
-            plus encore.
+            Inscrivez-vous à notre infolettre et recevez des nouvelles sur le
+            lancement du site, les dernières offres exclusives, des informations
+            sur les soldes, les réductions et bien plus encore.
           </CardDescription>
         </CardHeader>
         <CardContent>
