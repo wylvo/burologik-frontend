@@ -1,5 +1,4 @@
-import { useRef, useState } from "react"
-import axios from "axios"
+import { useRef } from "react"
 import { getRouteApi } from "@tanstack/react-router"
 import { z } from "zod"
 import { toast } from "sonner"
@@ -27,33 +26,25 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/shadcn/form"
-
-const subscribeSchema = z.object({
-  email: z.email({ error: "Veuillez insérer un courriel valide" }),
-  firstName: z
-    .string()
-    .min(2, { error: "Votre nom doit comporter au moins 2 caractères" })
-    .max(50, {
-      error: "Votre nom doit ne peut pas excéder plus de 50 caractères",
-    }),
-  captchaToken: z.string(),
-})
+import {
+  subscribeSchema,
+  useNewsletterSubscribe,
+} from "@/features/newsletter/api/subscribe"
 
 type SubscribeFormFields = z.infer<typeof subscribeSchema>
 
 const route = getRouteApi("/")
 
 const siteKey = import.meta.env.VITE_CLOUDFLARE_TURNSTILE_INVISIBLE_SITE_KEY
-const api = import.meta.env.VITE_API_ENDPOINT
 
 function NewsletterSubscribeForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const { locale } = route.useRouteContext()
+  const { subscribe, isPending } = useNewsletterSubscribe()
 
   const ref = useRef<TurnstileInstance | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<SubscribeFormFields>({
     resolver: zodResolver(subscribeSchema),
@@ -69,7 +60,7 @@ function NewsletterSubscribeForm({
   } = form
 
   const handleSubmit = async (data: SubscribeFormFields) => {
-    const { email, firstName, captchaToken } = data
+    const { captchaToken } = data
 
     if (!captchaToken) {
       toast.error("Erreur! Veuillez réessayer sous peu.", {
@@ -80,40 +71,28 @@ function NewsletterSubscribeForm({
       return
     }
 
-    setIsLoading(true)
-
-    try {
-      const { data } = await axios.post(
-        `${api}/newsletter/subscribe`,
-        { email, firstName, token: captchaToken },
-        { headers: { "Content-Type": "application/json" } },
-      )
-
-      if (data.success)
+    subscribe(data, {
+      onSuccess: () => {
         toast.success("Vous vous êtes abonné à notre infolettre avec succès!")
-      else
-        toast.error("L'abonnement a échoué. Veuillez réessayer plus tard.", {
-          style: {
-            color: "var(--destructive)",
+      },
+      onError: (error: any) => {
+        toast.error(
+          error?.response?.data?.message ||
+            "L'abonnement a échoué. Veuillez réessayer plus tard.",
+          {
+            style: {
+              color: "var(--destructive)",
+            },
           },
-        })
-    } catch (error: any) {
-      toast.error(
-        error?.response?.data?.message ||
-          "L'abonnement a échoué. Veuillez réessayer plus tard.",
-        {
-          style: {
-            color: "var(--destructive)",
-          },
-        },
-      )
-    } finally {
-      // Reset the Turnstile component by changing the key to generate a new challenge
-      ref.current?.reset()
-      form.reset()
-      form.clearErrors()
-      setIsLoading(false)
-    }
+        )
+      },
+      onSettled: () => {
+        // Reset the Turnstile component by changing the key to generate a new challenge
+        ref.current?.reset()
+        form.reset()
+        form.clearErrors()
+      },
+    })
   }
 
   return (
@@ -146,7 +125,7 @@ function NewsletterSubscribeForm({
                           <Input
                             className="bg-brand-50 focus-visible:ring-brand-50/85"
                             type="text"
-                            disabled={isLoading}
+                            disabled={isPending}
                             {...field}
                           />
                         </FormControl>
@@ -171,7 +150,7 @@ function NewsletterSubscribeForm({
                             className="bg-brand-50 focus-visible:ring-brand-50/85"
                             autoComplete="email"
                             placeholder="email@example.com"
-                            disabled={isLoading}
+                            disabled={isPending}
                             {...field}
                           />
                         </FormControl>
@@ -205,7 +184,7 @@ function NewsletterSubscribeForm({
                     )}
                   />
 
-                  {isLoading ? (
+                  {isPending ? (
                     <ButtonWithIcon
                       icon={<Loader2Icon className="animate-spin" />}
                       disabled
@@ -216,7 +195,7 @@ function NewsletterSubscribeForm({
                     <Button
                       type="submit"
                       className="w-full focus-visible:ring-brand-50/75"
-                      disabled={isLoading}
+                      disabled={isPending}
                     >
                       S'abonner
                     </Button>

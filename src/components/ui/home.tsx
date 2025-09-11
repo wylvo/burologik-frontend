@@ -1,4 +1,4 @@
-import NewsletterSubscribeForm from "@/components/ui/newsletter-subscribe-form"
+import NewsletterSubscribeForm from "@/features/newsletter/components/newsletter-subscribe-form"
 import { Link } from "@tanstack/react-router"
 import { Card } from "./shadcn/card"
 
