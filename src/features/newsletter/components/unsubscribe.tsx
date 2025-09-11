@@ -7,7 +7,7 @@ import { useState } from "react"
 import { toast } from "sonner"
 import UnsubscribeError from "./unsubscribe-error"
 
-const route = getRouteApi("/{-$locale}/(app)/newsletter/unsubscribe")
+const route = getRouteApi("/(app)/newsletter/unsubscribe")
 
 function Unsubscribe() {
   const { token } = route.useSearch()
