@@ -10,33 +10,44 @@
 
 import { Route as rootRouteImport } from "./routes/__root"
 import { Route as IndexRouteImport } from "./routes/index"
+import { Route as appNewsletterUnsubscribeRouteImport } from "./routes/(app)/newsletter/unsubscribe"
 
 const IndexRoute = IndexRouteImport.update({
   id: "/",
   path: "/",
   getParentRoute: () => rootRouteImport,
 } as any)
+const appNewsletterUnsubscribeRoute =
+  appNewsletterUnsubscribeRouteImport.update({
+    id: "/(app)/newsletter/unsubscribe",
+    path: "/newsletter/unsubscribe",
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute
+  "/newsletter/unsubscribe": typeof appNewsletterUnsubscribeRoute
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute
+  "/newsletter/unsubscribe": typeof appNewsletterUnsubscribeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   "/": typeof IndexRoute
+  "/(app)/newsletter/unsubscribe": typeof appNewsletterUnsubscribeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: "/"
+  fullPaths: "/" | "/newsletter/unsubscribe"
   fileRoutesByTo: FileRoutesByTo
-  to: "/"
-  id: "__root__" | "/"
+  to: "/" | "/newsletter/unsubscribe"
+  id: "__root__" | "/" | "/(app)/newsletter/unsubscribe"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  appNewsletterUnsubscribeRoute: typeof appNewsletterUnsubscribeRoute
 }
 
 declare module "@tanstack/react-router" {
@@ -48,11 +59,19 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    "/(app)/newsletter/unsubscribe": {
+      id: "/(app)/newsletter/unsubscribe"
+      path: "/newsletter/unsubscribe"
+      fullPath: "/newsletter/unsubscribe"
+      preLoaderRoute: typeof appNewsletterUnsubscribeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  appNewsletterUnsubscribeRoute: appNewsletterUnsubscribeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
