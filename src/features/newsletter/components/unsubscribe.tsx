@@ -17,13 +17,15 @@ function Unsubscribe() {
   async function handleUnsubscribe() {
     unsubscribe(token, {
       onSuccess: () => {
-        toast.success("You've successfully unsubscribed from our newsletter!")
+        toast.success(
+          "Vous vous êtes désabonné avec succès de notre infolettre!",
+        )
         setIsUnsubscribed(true)
       },
       onError: (error: any) => {
         toast.error(
           error?.response?.data?.message ||
-            "Unsubscription failed. Please try again later.",
+            "La désabonnement a échoué. Veuillez réessayer ultérieurement.",
           {
             style: {
               color: "var(--destructive)",
@@ -43,12 +45,13 @@ function Unsubscribe() {
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-medium">
             {isUnsubscribed
-              ? "You've successfully unsubscribed from our newsletter"
-              : "Do you want to unsubscribe?"}
+              ? "Vous vous êtes désabonné avec succès de notre infolettre"
+              : "Voulez-vous vous désabonner ?"}
           </h1>
           {!isUnsubscribed && (
             <p className="text-muted-foreground text-sm">
-              We'll stop sending emails to you right away if you confirm.
+              Nous cesserons immédiatement de vous envoyer des e-mails si vous
+              confirmez.
             </p>
           )}
         </div>
@@ -63,10 +66,10 @@ function Unsubscribe() {
               {isPending ? (
                 <>
                   <Loader2Icon className="animate-spin" />
-                  Unsubscribing
+                  Désabonnement...
                 </>
               ) : (
-                "Unsubscribe"
+                "Se désabonner"
               )}
             </Button>
           </div>

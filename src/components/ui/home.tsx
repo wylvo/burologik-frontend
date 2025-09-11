@@ -16,9 +16,14 @@ function Home() {
           </Link>
         </Card>
         <div className="flex flex-col items-center justify-center gap-8">
-          <div className="flex flex-col gap-4 font-libre-baskerville text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center">
-            <p>Libérez votre potentiel,</p>
-            <p>un réglage à la fois</p>
+          <div className="flex flex-col items-center gap-4 font-libre-baskerville text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white text-center">
+            <p className="text-2xl text-white/95">À venir bientôt</p>
+            <hr className="w-[80%] sm:w-[65%] lg:w-[50%]" />
+            <h1 className="md:leading-13.5 lg:leading-17.5">
+              Libérez votre potentiel,
+              <br />
+              un réglage à la fois
+            </h1>
           </div>
           <div className="w-full max-w-sm">
             <NewsletterSubscribeForm />

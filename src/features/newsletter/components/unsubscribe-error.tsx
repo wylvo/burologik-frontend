@@ -15,9 +15,9 @@ function UnsubscribeError({ error }: UnsubscribeErrorProps) {
     <NewsletterLayout>
       <div className="flex flex-col gap-8 max-w-2xl p-12 text-center">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-medium">An error occured</h1>
+          <h1 className="text-3xl font-medium">Une erreur s'est produite</h1>
           <p className="text-muted-foreground text-sm">
-            {errorMessage || "Something went wrong!"}
+            {errorMessage || "Quelque chose s'est mal passé!"}
           </p>
         </div>
       </div>
