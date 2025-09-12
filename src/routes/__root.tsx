@@ -40,6 +40,11 @@ export const Route = createRootRouteWithContext<RouterContext>()({
         type: "image/png",
         href: "/icon.png",
       },
+      {
+        rel: "apple-touch-icon",
+        type: "image/png",
+        href: "/icon.png",
+      },
     ],
   }),
   component: Root,
