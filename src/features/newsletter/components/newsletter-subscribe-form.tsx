@@ -205,8 +205,8 @@ function NewsletterSubscribeForm({
             </form>
           </Form>
         </CardContent>
-        <div className="text-brand-50 text-center text-xs px-4 text-[0.65rem]">
-          <p>* Nous respectons vos données et votre vie privée.</p>
+        <div className="text-brand-50 text-center px-4 text-[0.6rem]">
+          <p>Nous respectons vos données et votre vie privée.</p>
           <p>Désabonnez-vous à tout moment.</p>
         </div>
       </Card>
