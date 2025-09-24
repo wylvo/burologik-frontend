@@ -29,7 +29,9 @@ function Home() {
       </Section>
       <Section className="bg-brand-50 text-foreground">
         <Wrapper>
-          <h2 className="text-2xl font-medium lg:text-4xl mb-8">À Propos</h2>
+          <h2 className="text-2xl font-medium lg:text-4xl mb-8 font-libre-baskerville">
+            À Propos
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 auto-rows-max gap-x-12 gap-y-12 md:gap-y-18">
             <div className="space-y-4 order-1 md:order-1">
               <p>
@@ -131,7 +133,7 @@ function Home() {
       </Section>
       <Section className="bg-gradient-to-b from-[var(--color-brand-50)] to-[var(--color-brand-950)] text-background">
         <Wrapper className="">
-          <h2 className="text-2xl font-medium lg:text-4xl mb-16 text-center text-brand-800">
+          <h2 className="text-2xl font-medium lg:text-4xl mb-16 text-center text-brand-800 font-libre-baskerville">
             Abonnez-vous à notre infolettre!
           </h2>
           <div className="w-full max-w-sm mx-auto">
