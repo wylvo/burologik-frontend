@@ -124,7 +124,7 @@ function Home() {
                 c'est un engagement envers votre confort, votre style et vos
                 ambitions. Dans le futur, nous aimerions proposer plus de
                 couleurs et d'accessoires pour permettre une personnalisation
-                maximale
+                maximale.
               </p>
             </div>
           </div>
