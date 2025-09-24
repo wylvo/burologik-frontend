@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
       <Section className="relative flex items-center justify-center p-16 lg:p-32 min-h-svh bg-[url('https://brtegctbbzghofpzzmhv.supabase.co/storage/v1/object/public/pages/home/cover_image.webp')] bg-cover bg-no-repeat bg-center">
-        <Card className="absolute top-10 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:translate-x-0 lg:translate-y-0 lg:top-[2.5%] lg:left-[1.5%] px-4 py-0.5 lg:py-2 border border-b md:order-brand-50/20 bg-brand-50/35 backdrop-blur-sm rounded-sm">
+        <Card className="absolute top-10 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:translate-x-0 lg:translate-y-0 lg:top-[2.5%] lg:left-[1.5%] px-4 py-0.5 lg:py-2 border border-brand-50/20 md:order-brand-50/20 bg-brand-50/35 backdrop-blur-sm rounded-sm">
           <Link to="/">
             <img
               src="https://brtegctbbzghofpzzmhv.supabase.co/storage/v1/object/public/branding/logo/burologik_logo_verbose.jpg"
@@ -114,7 +114,6 @@ function Home() {
                 Nos bureaux sont méticuleusement fabriqué à la main, avec le
                 souci du détail et une passion pour la qualité.
               </p>
-
               <p>
                 Nous voulons offrir un bureau qui non seulement remplit sa
                 fonction, mais qui devient aussi un travail d'artisanat durable
@@ -125,7 +124,7 @@ function Home() {
                 c'est un engagement envers votre confort, votre style et vos
                 ambitions. Dans le futur, nous aimerions proposer plus de
                 couleurs et d'accessoires pour permettre une personnalisation
-                maximale.s
+                maximale
               </p>
             </div>
           </div>
